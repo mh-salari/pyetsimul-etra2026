@@ -1,0 +1,31 @@
+{
+  "participant": "salari_real_eye",
+  "trial": "1",
+  "camera": "cam2",
+  "px_per_mm": {
+    "right_eye": 20.832
+  },
+  "pairs": [
+    {
+      "source": "target_frames",
+      "hv9_position": 0,
+      "eye": "right_eye",
+      "measurement": {
+        "dilated_diameter_px": 116.96907806396484,
+        "constricted_diameter_px": 65.87947845458984,
+        "delta_diameter_px": 51.089599609375,
+        "dilated_mm": 5.614875099076653,
+        "constricted_mm": 3.1624173605313866,
+        "delta_mm": 2.4524577385452666,
+        "glint": {
+          "cx": 0.05959794336652002,
+          "cy": 0.11042603478141515,
+          "dx_px": 3.0448350641377147,
+          "dy_px": 5.641621903433418,
+          "dx_mm": 0.14616143741060458,
+          "dy_mm": 0.2708151835365504
+        }
+      }
+    }
+  ]
+}

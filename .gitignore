@@ -1,0 +1,9 @@
+.DS_Store
+**/.DS_Store
+__pycache__/
+*.pyc
+RESTRUCTURE_PLAN.md
+
+# Local-only image assets (not referenced by the site)
+img/badges/
+img/code/
