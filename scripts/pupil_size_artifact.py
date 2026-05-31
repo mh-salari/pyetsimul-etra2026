@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Rectangle
+from tqdm import tqdm
 
 from pyetsimul.core import Eye
 from pyetsimul.core.cornea import ConicCornea
@@ -256,7 +257,8 @@ def main() -> None:
 
     anim = FuncAnimation(fig, update, frames=n, interval=1000 / FPS, blit=False)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    anim.save(OUT_PATH, writer="ffmpeg", fps=FPS, dpi=100)
+    with tqdm(total=n, desc=OUT_PATH.name) as bar:
+        anim.save(OUT_PATH, writer="ffmpeg", fps=FPS, dpi=100, progress_callback=lambda *_: bar.update())
     plt.close(fig)
     print(f"Wrote {OUT_PATH}")
 

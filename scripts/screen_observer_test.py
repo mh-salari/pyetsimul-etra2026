@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Rectangle
+from tqdm import tqdm
 
 from pyetsimul.core import Camera, Eye, Light
 from pyetsimul.evaluation import accuracy_at_calibration_points
@@ -212,7 +213,8 @@ def _render_video(
 
     anim = FuncAnimation(fig, update, frames=n, interval=1000 / FPS, blit=False)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    anim.save(out_path, writer="ffmpeg", fps=FPS, dpi=100)
+    with tqdm(total=n, desc=out_path.name) as bar:
+        anim.save(out_path, writer="ffmpeg", fps=FPS, dpi=100, progress_callback=lambda *_: bar.update())
     plt.close(fig)
     print(f"Wrote {out_path}")
 

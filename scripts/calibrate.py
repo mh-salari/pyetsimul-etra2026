@@ -13,6 +13,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Rectangle
+from tqdm import tqdm
 
 from pyetsimul.gaze_mapping.stampe1993 import Stampe1993GazeModel
 from pyetsimul.types import Position3D, ScreenGeometry
@@ -124,7 +125,8 @@ def main() -> None:
 
     anim = FuncAnimation(fig, update, frames=TOTAL_FRAMES, interval=1000 / FPS, blit=False)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    anim.save(OUT_PATH, writer="ffmpeg", fps=FPS, dpi=100)
+    with tqdm(total=TOTAL_FRAMES, desc=OUT_PATH.name) as bar:
+        anim.save(OUT_PATH, writer="ffmpeg", fps=FPS, dpi=100, progress_callback=lambda *_: bar.update())
     plt.close(fig)
     print(f"Wrote {OUT_PATH}")
 
