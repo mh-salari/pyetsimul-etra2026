@@ -47,6 +47,16 @@ HV9_CALIBRATION_POINTS: list[Position3D] = [
     Position3D(CAL_HALF_W, 0.0, -CAL_HALF_H),
 ]
 
+# Demo gaze sweep: centre + 4 cardinal midpoints. Shared by the pupil-glint
+# animation and the matching per-gaze code images so they stay in sync.
+SWEEP_TARGETS: list[Position3D] = [
+    Position3D(0.0, 0.0, 0.0),
+    Position3D(0.0, 0.0, CAL_HALF_H),
+    Position3D(CAL_HALF_W, 0.0, 0.0),
+    Position3D(0.0, 0.0, -CAL_HALF_H),
+    Position3D(-CAL_HALF_W, 0.0, 0.0),
+]
+
 # Shared 3D view (so all slide images render with the same axes / camera angle).
 REF_BOUNDS: dict[str, tuple[float, float]] = {
     "x": (-300, 300),
